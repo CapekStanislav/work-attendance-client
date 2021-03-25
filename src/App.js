@@ -1,53 +1,19 @@
-import Navbar from "react-bootstrap/Navbar";
-import Info from "./shifts/Info";
-import Login from "./shifts/Login";
-import traverson from "traverson-promise";
-import JsonHalAdapter from "traverson-hal";
-import {useState} from "react";
-import Shifts from "./shifts/Shifts";
-import useEmployees from "./hooks/useEmployees";
-import LoadingSpinner from "./components/LoadingSpinner";
-import ErrorMessage from "./components/ErrorMessage";
-
-traverson.registerMediaType(JsonHalAdapter.mediaType, JsonHalAdapter)
+import Main from "./main/Main";
+import Login from "./login/Login";
+import useLogging from "./hooks/useLogging";
+import useMutateLogging from "./hooks/useMutateLogging";
 
 export default function App() {
+    const {data:isLogged} = useLogging();
+    const {mutate: setLogged} = useMutateLogging();
 
-    const url = "http://localhost:8080/api/v1"
-    const [date, setDate] = useState(new Date())
-    const {
-        data: users,
-        isError: isErrorUsers,
-        isSuccess: isSuccessUsers,
-        error
-    } = useEmployees(url);
-
-    const handleDateChange = (newDate) => setDate(newDate)
-
-    const shiftsComponent = (
-        <Shifts
-            user={isSuccessUsers && users[0]}
-            date={date}
-        />
-    )
+    const handleOnSubmit = (e) => {
+        e.preventDefault();
+        setLogged(true);
+    };
 
     return (
-        <>
-            <Navbar bg={"light"} variant={"dark"}>
-                <Info date={date}
-                      user={isSuccessUsers ? users[0] : {}}
-                      onDateChange={handleDateChange}
-                />
+        isLogged ? <Main/> : <Login onSubmit={handleOnSubmit}/>
+    );
 
-                <Login/>
-            </Navbar>
-            {(isErrorUsers) &&
-            <ErrorMessage title={"Objevila se chyba"}
-                          message={"Při načítání uživatelů se vyskytla chyba! Zkuste aktualizovat stránku." +
-                          error?.doc?.message}
-                          variant={"danger"}
-            />}
-            {isSuccessUsers ? shiftsComponent : <LoadingSpinner text={"Načítám uživatele ..."} variant={"primary"}/>}
-        </>
-    )
 }
