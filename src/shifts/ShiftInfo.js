@@ -21,7 +21,7 @@ export default function ShiftInfo({info, onTimeChange, onTypeChange}) {
 
     return (
         <>
-            <Col xs={12} sm={"auto"}>
+            <Col xs={12} sm={"auto"} className={"font-weight-bold"}>
                 {info.day}
             </Col>
             <Col xs={12} sm={"auto"}>

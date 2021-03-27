@@ -5,6 +5,7 @@ import Accordion from "react-bootstrap/Accordion";
 import ShiftInfo from "./ShiftInfo";
 import {Row, useAccordionToggle} from "react-bootstrap";
 import DateTimeIsoStringBuilder from "../services/DateTimeIsoStringBuilder";
+import useWeekHolidayColorSchema from "../hooks/useWeekHolidayColorSchema";
 
 const CustomToggle = ({eventKey, children}) => {
 
@@ -24,6 +25,7 @@ const CustomToggle = ({eventKey, children}) => {
 export default function Shift({eventKey, shiftTypes, day, shift, onShiftChange}) {
     const workTime = shift.workTime
     const premiumPayments = shift.premiumPayments
+    const colorSchema = useWeekHolidayColorSchema(new Date(shift.start));
 
     const handleSelect = (e) => {
         let selection = e.target.value;
@@ -49,7 +51,7 @@ export default function Shift({eventKey, shiftTypes, day, shift, onShiftChange})
             changedShift.start = dateTimeIsoString.withTimeAsString(start).build()
         }
 
-        if(end) {
+        if (end) {
             changedShift.end = dateTimeIsoString.withTimeAsString(end).build()
         }
 
@@ -63,8 +65,9 @@ export default function Shift({eventKey, shiftTypes, day, shift, onShiftChange})
         return isLessThenTen ? "0" + timeString : timeString;
     }
 
+
     return (
-        <Card>
+        <Card {...colorSchema}>
             <Card.Header>
                 <Row className={"justify-content-sm-center"}>
                     <ShiftInfo
@@ -73,7 +76,7 @@ export default function Shift({eventKey, shiftTypes, day, shift, onShiftChange})
                                 day: day,
                                 start: convertToTimeString(new Date(shift.start)),
                                 end: convertToTimeString(new Date(shift.end)),
-                                types: shiftTypes.length>0? shiftTypes: [shift.shiftType],
+                                types: shiftTypes.length > 0 ? shiftTypes : [shift.shiftType],
                                 type: shift.shiftType
                             }
                         }

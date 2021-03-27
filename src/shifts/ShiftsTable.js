@@ -3,13 +3,13 @@ import Accordion from "react-bootstrap/Accordion";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-function ShiftsTable({types, shifts,onShiftChange}) {
+function ShiftsTable({types, shifts, onShiftChange}) {
 
     const createShifts = (shifts) => {
         const arr = []
         for (let i = 0; i < shifts.length; i++) {
             const day = i + 1;
-            const shift = {...shifts[i],index:i}
+            const shift = {...shifts[i], index: i}
             arr.push(
                 <Shift
                     key={day}
@@ -25,7 +25,7 @@ function ShiftsTable({types, shifts,onShiftChange}) {
     }
     return (
         <Row className={"justify-content-center"}>
-            <Col md={9} lg={7} xl={6}>
+            <Col sm={8} xl={6}>
                 <Accordion>
                     {createShifts(shifts)}
                 </Accordion>
