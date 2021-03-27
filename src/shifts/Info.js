@@ -14,27 +14,13 @@ function Info({date, onDateChange, user}) {
     let dateString = `${date.getFullYear()}-${(date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)}`;
     return (
         <>
-            <Col>
-                Toto je info o uživateli {user?.firstName} {user?.lastName}
-                <input
-                    className={"ml-3"}
-                    type={"month"}
-                    value={dateString}
-                    onChange={(e) => convertToDate(e)}
-                />
-
-            </Col>
-            <Col>
-                {
-                    isFetching ?
-                        (
-                            <Spinner animation={"grow"} role="status" variant={"dark"}>
-                                <span className={"sr-only"}>{"Loading from server..."}</span>
-                            </Spinner>
-                        )
-                        : ""
-                }
-            </Col>
+            Přihlášený uživatel: {user?.firstName} {user?.lastName}
+            <input
+                className={"ml-3"}
+                type={"month"}
+                value={dateString}
+                onChange={(e) => convertToDate(e)}
+            />
         </>
     )
 }

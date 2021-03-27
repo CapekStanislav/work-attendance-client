@@ -8,6 +8,9 @@ import ErrorMessage from "../components/ErrorMessage";
 import LoadingSpinner from "../components/LoadingSpinner";
 import traverson from "traverson-promise";
 import JsonHalAdapter from "traverson-hal";
+import GlobalFetchingIndicator from "../components/GlobalFetchingIndicator";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
 
 traverson.registerMediaType(JsonHalAdapter.mediaType, JsonHalAdapter)
 
@@ -32,12 +35,11 @@ export default function Main() {
 
     return (
         <>
-            <Navbar bg={"light"} variant={"dark"}>
+            <Navbar bg={"light"} variant={"dark"} className={"justify-content-between"}>
                 <Info date={date}
                       user={isSuccessUsers ? users[0] : {}}
                       onDateChange={handleDateChange}
                 />
-
                 <LoginButton/>
             </Navbar>
             {(isErrorUsers) &&
@@ -46,7 +48,9 @@ export default function Main() {
                           error?.doc?.message}
                           variant={"danger"}
             />}
+            <GlobalFetchingIndicator/>
             {isSuccessUsers ? shiftsComponent : <LoadingSpinner text={"Načítám uživatele ..."} variant={"primary"}/>}
+
         </>
     )
 }
