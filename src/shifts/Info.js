@@ -1,14 +1,13 @@
-import Col from "react-bootstrap/Col";
-import {useIsFetching} from "react-query";
-import Spinner from "react-bootstrap/Spinner";
+import useMutateDate from "../hooks/useMutateDate";
+import {useState} from "react";
+import {QueryObserver, useQueryClient} from "react-query";
 
-function Info({date, onDateChange, user}) {
-    const isFetching = useIsFetching()
+function Info({user,date,onDateChange}) {
 
     const convertToDate = (e) => {
         const yearMonthString = e.target.value;
         const date = new Date(yearMonthString)
-        onDateChange(date)
+        onDateChange(date);
     }
 
     let dateString = `${date.getFullYear()}-${(date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)}`;

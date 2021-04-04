@@ -1,8 +1,10 @@
 import TimeInput from "./TimeInput";
 import ShiftType from "./ShiftType";
 import Col from "react-bootstrap/Col";
+import useLockShifts from "../hooks/useLockShifts";
 
 export default function ShiftInfo({info, onTimeChange, onTypeChange}) {
+
 
     const handleTimeChange = (e) => {
         let time = e.target.value

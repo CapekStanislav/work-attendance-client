@@ -32,6 +32,8 @@ export default function Shifts({user, date}) {
     const shiftsMutation = useMutateShifts()
 
     const handleShiftChange = (changedShift) => {
+        console.log("HandleShiftChange: ", changedShift);
+
         const tempShifts = [...data.shifts]
         tempShifts.splice(changedShift.index, 1, changedShift)
         shiftsMutation.mutate({...data, shifts: tempShifts})
@@ -48,14 +50,14 @@ export default function Shifts({user, date}) {
             <Summarization
                 sumInfo={
                     isShiftsLoaded &&
-                        {
-                            premiumPaymentsSum: data.premiumPaymentsSum,
-                            workTimeSum: {
-                                ...data.workTimeSum,
-                                previousMonth: data.previousMonth,
-                                nextMonth: data.nextMonth
-                            },
-                        }
+                    {
+                        premiumPaymentsSum: data.premiumPaymentsSum,
+                        workTimeSum: {
+                            ...data.workTimeSum,
+                            previousMonth: data.previousMonth,
+                            nextMonth: data.nextMonth
+                        },
+                    }
                 }
                 fluid={true}
                 className={"fixed-bottom bg-light px-5"}

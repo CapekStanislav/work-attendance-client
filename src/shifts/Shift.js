@@ -6,11 +6,10 @@ import ShiftInfo from "./ShiftInfo";
 import {Row, useAccordionToggle} from "react-bootstrap";
 import DateTimeIsoStringBuilder from "../services/DateTimeIsoStringBuilder";
 import useWeekHolidayColorSchema from "../hooks/useWeekHolidayColorSchema";
+import useLockShifts from "../hooks/useLockShifts";
 
 const CustomToggle = ({eventKey, children}) => {
-
     const handleOnClick = useAccordionToggle(eventKey)
-
     return (
         <Button
             variant={"info"}
@@ -19,15 +18,21 @@ const CustomToggle = ({eventKey, children}) => {
             {children}
         </Button>
     )
-
 }
 
 export default function Shift({eventKey, shiftTypes, day, shift, onShiftChange}) {
     const workTime = shift.workTime
     const premiumPayments = shift.premiumPayments
     const colorSchema = useWeekHolidayColorSchema(new Date(shift.start));
+    const {data: locked} = useLockShifts();
+
+    const showLockMessage = () => alert("Docházka je uzamčena a nelze jí editovat.");
 
     const handleSelect = (e) => {
+        if (locked) {
+            showLockMessage();
+            return;
+        }
         let selection = e.target.value;
         if (selection === undefined || selection === "") {
             e.target.focus()
