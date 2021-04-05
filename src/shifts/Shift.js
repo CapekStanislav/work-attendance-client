@@ -24,15 +24,8 @@ export default function Shift({eventKey, shiftTypes, day, shift, onShiftChange})
     const workTime = shift.workTime
     const premiumPayments = shift.premiumPayments
     const colorSchema = useWeekHolidayColorSchema(new Date(shift.start));
-    const {data: locked} = useLockShifts();
-
-    const showLockMessage = () => alert("Docházka je uzamčena a nelze jí editovat.");
 
     const handleSelect = (e) => {
-        if (locked) {
-            showLockMessage();
-            return;
-        }
         let selection = e.target.value;
         if (selection === undefined || selection === "") {
             e.target.focus()

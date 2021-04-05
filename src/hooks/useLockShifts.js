@@ -10,10 +10,8 @@ export default function useLockShifts() {
             const year = date.getFullYear();
             const shifts = client.getQueryData(["shifts", {month, year}]);
             if (!shifts) {
-                console.log("UseLockShifts rejecting...");
                 reject()
             }
-            console.log("UseLockShifts resolving...");
             resolve(shifts.locked);
         })
     })

@@ -1,4 +1,18 @@
+import useLockShifts from "../hooks/useLockShifts";
+
 export default function ShiftType({options, onChange, selectedValue}) {
+    const {data: locked} = useLockShifts();
+
+    const showLockMessage = () => alert("Docházka je uzamčena a nelze jí editovat.");
+
+    const handleChange = (e) => {
+        if (locked) {
+            e.target.value = selectedValue;
+            showLockMessage();
+            return;
+        }
+        onChange(e);
+    }
 
     const getOption = (type) => {
         return (
@@ -18,7 +32,7 @@ export default function ShiftType({options, onChange, selectedValue}) {
     return (
         <select
             name={"shiftTypes"}
-            onChange={onChange}
+            onChange={handleChange}
         >
             {getEmptyOption()}
             {
