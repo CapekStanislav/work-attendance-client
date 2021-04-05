@@ -32,8 +32,6 @@ export default function Shifts({user, date}) {
     const shiftsMutation = useMutateShifts()
 
     const handleShiftChange = (changedShift) => {
-        console.log("HandleShiftChange: ", changedShift);
-
         const tempShifts = [...data.shifts]
         tempShifts.splice(changedShift.index, 1, changedShift)
         shiftsMutation.mutate({...data, shifts: tempShifts})
