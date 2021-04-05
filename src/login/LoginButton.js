@@ -1,5 +1,4 @@
 import Button from "react-bootstrap/Button";
-import {useState} from "react";
 import useMutateLogging from "../hooks/useMutateLogging";
 
 function LoginButton() {
@@ -11,7 +10,7 @@ function LoginButton() {
 
     return (
         <Button variant={"outline-danger"} onClick={() => toggleLogging()}>
-           Odhlásit
+            Odhlásit
         </Button>
     )
 }
