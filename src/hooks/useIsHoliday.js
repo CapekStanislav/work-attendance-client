@@ -14,5 +14,7 @@ export default function useIsHoliday(date) {
             .withTemplateParameters({date: dateYMD})
             .follow("existsByDate")
             .getResource().result;
+    }, {
+        staleTime: 300000
     });
 }
