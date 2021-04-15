@@ -17,11 +17,11 @@ export default function Login({onSubmit}) {
                     <Form onSubmit={onSubmit}>
                         <Form.Group controlId="formUserName">
                             <Form.Label>Uživatelské jméno:</Form.Label>
-                            <Form.Control type="text" placeholder="Vložte uživatelské jméno"/>
+                            <Form.Control required type="text" placeholder="Vložte uživatelské jméno"/>
                         </Form.Group>
                         <Form.Group controlId="formUserPassword">
                             <Form.Label>Heslo:</Form.Label>
-                            <Form.Control type="password" placeholder="heslo"/>
+                            <Form.Control required type="password" placeholder="heslo"/>
                         </Form.Group>
                         <Button variant="primary" type="submit">
                             Přihlásit
