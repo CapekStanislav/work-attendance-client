@@ -4,6 +4,7 @@ import useLockShifts from "../hooks/useLockShifts";
 export default function TimeInput({id, time: initTime, onChange}) {
     const [time, setTime] = useState(initTime);
     const {data: locked} = useLockShifts();
+    const stepInSeconds = 900
 
     const showLockMessage = () => alert("Docházka je uzamčena a nelze jí editovat.");
 
@@ -24,6 +25,7 @@ export default function TimeInput({id, time: initTime, onChange}) {
             id={id}
             type={"time"}
             value={time}
+            step={stepInSeconds}
             onChange={handleTimeChange}
         />
     )
