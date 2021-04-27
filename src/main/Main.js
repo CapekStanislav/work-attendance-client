@@ -1,4 +1,3 @@
-import {useState} from "react";
 import useEmployees from "../hooks/useEmployees";
 import Shifts from "../shifts/Shifts";
 import ErrorMessage from "../components/ErrorMessage";
@@ -11,15 +10,16 @@ import useMutateDate from "../hooks/useMutateDate";
 
 traverson.registerMediaType(JsonHalAdapter.mediaType, JsonHalAdapter)
 
+const URL = "http://localhost:8080/api/v1"
+
 export default function Main() {
-    const url = "http://localhost:8080/api/v1"
     const {data: date, mutate: setDate} = useMutateDate(new Date());
     const {
         data: users,
         isError: isErrorUsers,
         isSuccess: isSuccessUsers,
         error
-    } = useEmployees(url);
+    } = useEmployees(URL);
 
     const handleDateChange = (newDate) => {
         setDate(newDate)

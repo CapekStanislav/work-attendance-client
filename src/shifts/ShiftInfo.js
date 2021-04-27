@@ -4,7 +4,6 @@ import Col from "react-bootstrap/Col";
 
 export default function ShiftInfo({info, onTimeChange, onTypeChange}) {
 
-
     const handleTimeChange = (e) => {
         let time = e.target.value
         switch (e.target.id) {

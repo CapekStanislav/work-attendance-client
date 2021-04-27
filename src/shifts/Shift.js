@@ -6,7 +6,6 @@ import ShiftInfo from "./ShiftInfo";
 import {Row, useAccordionToggle} from "react-bootstrap";
 import DateTimeIsoStringBuilder from "../services/DateTimeIsoStringBuilder";
 import useWeekHolidayColorSchema from "../hooks/useWeekHolidayColorSchema";
-import useLockShifts from "../hooks/useLockShifts";
 
 const CustomToggle = ({eventKey, children}) => {
     const handleOnClick = useAccordionToggle(eventKey)
@@ -21,22 +20,23 @@ const CustomToggle = ({eventKey, children}) => {
 }
 
 export default function Shift({eventKey, shiftTypes, day, shift, onShiftChange}) {
-    const workTime = shift.workTime
-    const premiumPayments = shift.premiumPayments
+    const workTime = shift.workTime;
+    const premiumPayments = shift.premiumPayments;
     const colorSchema = useWeekHolidayColorSchema(new Date(shift.start));
 
     const handleSelect = (e) => {
         let selection = e.target.value;
-        if (selection === undefined || selection === "") {
-            e.target.focus()
-            alert("Select valid type")
-            return
+        if (!selection) {
+            e.target.focus();
+            e.target.value = shift.shiftType;
+            alert("Vyberte jeden z typů směn");
+            return;
         }
         const changedShift = {
             ...shift,
             shiftType: selection
         }
-        onShiftChange(changedShift)
+        onShiftChange(changedShift);
     }
 
     const handleTimeChange = (start, end) => {

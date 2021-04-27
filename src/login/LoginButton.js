@@ -4,9 +4,7 @@ import useMutateLogging from "../hooks/useMutateLogging";
 function LoginButton() {
     const {mutate: setLogged} = useMutateLogging();
 
-    const toggleLogging = () => {
-        setLogged(false)
-    }
+    const toggleLogging = () => setLogged(false)
 
     return (
         <Button variant={"outline-danger"} onClick={() => toggleLogging()}>

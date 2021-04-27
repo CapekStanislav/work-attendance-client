@@ -8,7 +8,7 @@ export default function useShiftsWithSum(url, searchParams, option) {
 
     const result = useShifts(url, searchParams, {
         ...option,
-        onSuccess: (workAttendance) => {
+        onSuccess: () => {
             let secondaryKey = {year:searchParams.year,month: searchParams.month};
             queryClient.invalidateQueries(
                 ["workTimeSum",secondaryKey]

@@ -1,7 +1,6 @@
 import {useQuery} from "react-query";
 import traverson from "traverson-promise";
 
-
 function getAllUsers(url) {
     return traverson.from(url)
         .jsonHal()

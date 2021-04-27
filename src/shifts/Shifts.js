@@ -11,9 +11,9 @@ import useShiftsWithSum from "../hooks/useShiftsWithSum";
 
 traverson.registerMediaType(JsonHalAdapter.mediaType, JsonHalAdapter)
 
+const URL = "http://localhost:8080/api/v1"
 
 export default function Shifts({user, date}) {
-    const url = "http://localhost:8080/api/v1"
     const searchParams = user ? {
         year: date.getFullYear(),
         month: date.getMonth() + 1,
@@ -22,7 +22,7 @@ export default function Shifts({user, date}) {
     } : {}
 
     const {data, isSuccess: isShiftsLoaded, isError: isErrorShifts, error} = useShiftsWithSum(
-        url,
+        URL,
         searchParams,
         {enabled: !!user}
     )

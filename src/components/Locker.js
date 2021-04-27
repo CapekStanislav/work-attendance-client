@@ -7,9 +7,7 @@ export default function Locker() {
     const {data: locked} = useLockShifts();
     const {mutate: setLock, isLoading} = useMutateLockShifts();
 
-    const handleChange = (e) => {
-        setLock(e.target.checked);
-    }
+    const handleChange = (e) => setLock(e.target.checked);
 
     let label = "docházka uzamčena";
     const loading = (

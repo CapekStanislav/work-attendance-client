@@ -1,7 +1,6 @@
 import {useMutation, useQueryClient} from "react-query";
 import traverson from "traverson-promise";
 
-
 export default function useMutateLockShifts() {
     const client = useQueryClient();
 

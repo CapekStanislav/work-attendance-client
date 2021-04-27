@@ -1,11 +1,10 @@
-import DatePicker from "../shifts/DatePicker";
+import DatePicker from "./DatePicker";
 import LoginButton from "../login/LoginButton";
 import Navbar from "react-bootstrap/Navbar";
 import Locker from "./Locker";
 import {Nav} from "react-bootstrap";
 
 export default function NavigationBar({user, date, onDateChange}) {
-
     return (
         <Navbar bg={"light"} variant={"dark"} className={"justify-content-between"}>
             <Nav.Item>
